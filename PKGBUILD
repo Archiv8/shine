@@ -15,37 +15,34 @@
 
 pkgname=shine
 pkgver=3.1.1
-pkgrel=3
+pkgrel=4
 pkgdesc="Super fast fixed-point MP3 encoder"
 arch=("arm" "i686" "x86_64")
 url="https://github.com/savonet/shine"
 source=($pkgname-$pkgver.tar.gz::https://github.com/toots/$pkgname/archive/$pkgver.tar.gz)
 license=(GPL2)
 depends=(
-"glibc"
+  "glibc"
 )
-makedepends=(
-"automake"
-"autoconf"
-"make"
-"libtool"
-)
+# makedepends=(
+#
+# )
 options=(
-"!libtool"
-"!strip"
+  "!libtool"
+  "!strip"
 )
 sha512sums=(
-"57b017d22b373507844870ea5837962488f4a0e2238df7b79c837df0aa8f7304ba82d8d7f55d47980b854518f8e34aa55a9fa40f6260650fd7d23f5a94cd4484"
+  "57b017d22b373507844870ea5837962488f4a0e2238df7b79c837df0aa8f7304ba82d8d7f55d47980b854518f8e34aa55a9fa40f6260650fd7d23f5a94cd4484"
 )
 
 build() {
-cd "${srcdir}/${pkgname}-${pkgver}"
-./bootstrap
-./configure --prefix=/usr
-make all
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  ./bootstrap
+  ./configure --prefix=/usr
+  make all
 }
 
 package() {
-cd "${srcdir}/${pkgname}-${pkgver}"
-make DESTDIR="${pkgdir}" install
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
 }
